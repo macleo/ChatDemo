@@ -48,13 +48,16 @@ public class ChatListViewAdapter extends BaseAdapter {
     private Context context;
     private List<ChatMessageBean> userList = new ArrayList<ChatMessageBean>();
     private ArrayList<String> imageList = new ArrayList<String>();
-    private HashMap<Integer,Integer> imagePosition = new HashMap<Integer,Integer>();
+    private HashMap<Integer, Integer> imagePosition = new HashMap<Integer, Integer>();
+    /**
+     * 关于消息类型，定义一个enum不好么?
+     */
     public static final int FROM_USER_MSG = 0;//接收消息类型
     public static final int TO_USER_MSG = 1;//发送消息类型
-    public static final int FROM_USER_IMG = 2;//接收消息类型
-    public static final int TO_USER_IMG = 3;//发送消息类型
-    public static final int FROM_USER_VOICE = 4;//接收消息类型
-    public static final int TO_USER_VOICE = 5;//发送消息类型
+    public static final int FROM_USER_IMG = 2;//接收图片消息类型
+    public static final int TO_USER_IMG = 3;//发送图片消息类型
+    public static final int FROM_USER_VOICE = 4;//接收语音消息类型
+    public static final int TO_USER_VOICE = 5;//发送语音消息类型
     private int mMinItemWith;// 设置对话框的最大宽度和最小宽度
     private int mMaxItemWith;
     public MyHandler handler;
@@ -123,7 +126,8 @@ public class ChatListViewAdapter extends BaseAdapter {
     public void setImageList(ArrayList<String> imageList) {
         this.imageList = imageList;
     }
-    public void setImagePosition(HashMap<Integer,Integer> imagePosition) {
+
+    public void setImagePosition(HashMap<Integer, Integer> imagePosition) {
         this.imagePosition = imagePosition;
     }
 
@@ -158,7 +162,7 @@ public class ChatListViewAdapter extends BaseAdapter {
     @Override
     public View getView(int i, View view, ViewGroup viewGroup) {
         ChatMessageBean tbub = userList.get(i);
-        switch (getItemViewType(i)) {
+        switch (getItemViewType(i)) {//由消息类型来决定载入什么布局文件然后显示
             case FROM_USER_MSG:
                 FromUserMsgViewHolder holder;
                 if (view == null) {
@@ -233,7 +237,7 @@ public class ChatListViewAdapter extends BaseAdapter {
                 }
                 toMsgUserLayout((ToUserMsgViewHolder) holder3, tbub, i);
                 break;
-            case TO_USER_IMG:
+            case TO_USER_IMG://发送图片消息
                 ToUserImgViewHolder holder4;
                 if (view == null) {
                     holder4 = new ToUserImgViewHolder();
@@ -527,8 +531,8 @@ public class ChatListViewAdapter extends BaseAdapter {
     }
 
     private void toImgUserLayout(final ToUserImgViewHolder holder, final ChatMessageBean tbub, final int position) {
-        holder.headicon.setBackgroundResource(R.mipmap.grzx_tx_s);
-        switch (tbub.getSendState()) {
+        holder.headicon.setBackgroundResource(R.mipmap.grzx_tx_s);//头像显示
+        switch (tbub.getSendState()) {//由发送状态来决定显示
             case ChatConst.SENDING:
                 an = AnimationUtils.loadAnimation(context,
                         R.anim.update_loading_progressbar_anim);
@@ -537,12 +541,12 @@ public class ChatListViewAdapter extends BaseAdapter {
                 an.setRepeatCount(-1);
                 holder.sendFailImg
                         .setBackgroundResource(R.mipmap.xsearch_loading);
-                holder.sendFailImg.startAnimation(an);
+                holder.sendFailImg.startAnimation(an);//播放动画效果
                 an.startNow();
                 holder.sendFailImg.setVisibility(View.VISIBLE);
                 break;
 
-            case ChatConst.COMPLETED:
+            case ChatConst.COMPLETED://发送完毕后，隐藏
                 holder.sendFailImg.clearAnimation();
                 holder.sendFailImg.setVisibility(View.GONE);
                 break;

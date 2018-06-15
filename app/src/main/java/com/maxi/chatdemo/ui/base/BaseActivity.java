@@ -77,7 +77,7 @@ public abstract class BaseActivity extends Activity {
     public ChatBottomView tbbv;
     private DataAdapter adapter;
     public AudioRecordButton voiceBtn;
-    public EditText mEditTextContent;
+    public EditText mEditTextContent;//发送消息的EditText
     public ViewPager expressionViewpager;
     public LinearLayout emoji_group;
     private File mCurrentPhotoFile;
@@ -146,7 +146,7 @@ public abstract class BaseActivity extends Activity {
     protected void findView() {
         pullList = (PullToRefreshLayout) findViewById(R.id.content_lv);
         activityRootView = findViewById(R.id.layout_tongbao_rl);
-        mEditTextContent = (EditText) findViewById(R.id.mess_et);
+        mEditTextContent = (EditText) findViewById(R.id.mess_et);//发送消息的EditText
         mess_iv = (ImageView) findViewById(R.id.mess_iv);
         emoji = (ImageView) findViewById(R.id.emoji);
         voiceIv = (ImageView) findViewById(R.id.voice_iv);
@@ -771,6 +771,7 @@ public abstract class BaseActivity extends Activity {
         return tbub;
     }
 
+    /** 键盘 监听 **/
     private View.OnKeyListener onKeyListener = new View.OnKeyListener() {
 
         @Override

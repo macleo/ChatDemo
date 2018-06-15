@@ -1,70 +1,73 @@
+### 2018.6.15.Fri.
+demo过程中发现，发送语音和图片，ProgressBar不消失。
+
 # ChatDemo
 
-##������ѡ��ʵ�ַ�ʽ��
+##主界面选择实现方式：
 
 ![image](https://github.com/Maxi-Mao/ChatDemo/blob/master/ChatIMG/main.jpg)
 
-##���ֱ���ʾ��ͼƬ��
+##文字表情示例图片：
 
 ![image](https://github.com/Maxi-Mao/ChatDemo/blob/master/ChatIMG/img1.png)
 
-##ͼƬ����ʾ��ͼƬ��
+##图片发送示例图片：
 
 ![image](https://github.com/Maxi-Mao/ChatDemo/blob/master/ChatIMG/img2.png)
 
-##��������ʾ����ͼ��
+##语音发送示例动图：
 
 ![image](https://github.com/Maxi-Mao/ChatDemo/blob/master/ChatIMG/voice.gif)
 
-##ע��RecyclerView��ListViewʵ�ַ�ʽ��ͬ��Щ�����ܲ�ͬ������ʹ�á�
+##注：RecyclerView和ListView实现方式不同，些许功能不同，按需使用。
 
-�������߻��淽ʽ�����ԣ����������������־ֲ�����Ƶ���Ľ���ʹ��RecyclerView����
+（按二者缓存方式的特性，建议类似聊天这种局部更新频繁的界面使用RecyclerView。）
 
- ��RecyclerView�������ƣ�����bug֪ͨ�����޸���
-##16/11/7���£�
+ （RecyclerView现已完善，如有bug通知我再修复）
+##16/11/7更新：
 
-* �Ż����������ȣ���Ҫ�Ż�GifTextView�ؼ�����RecyclerView����������ȣ���Ҫ�������ʱͼƬ�����ֱ������˸���⡣
+* 优化界面流畅度，主要优化GifTextView控件，和RecyclerView界面的流畅度，主要解决滑动时图片和文字表情的闪烁问题。
 
-##16/10/15���£�
+##16/10/15更新：
 
-* ������Ϣ���ݿ⣬���ڱ��������¼�� ���ݿ��õ���GreenDao�����ݷ�ҳ���ء�
+* 添加消息数据库，用于保存聊天记录。 数据库用的是GreenDao。数据分页加载。
 
-��Ϊ�Ǹ�Demo������ListView��RecyclerView�õ�ͬһ���������ֻ�迴ʵ�ַ�ʽ���ɡ�
+因为是个Demo，所以ListView和RecyclerView用的同一个表，大家只需看实现方式即可。
 
-##16/10/10���£�
+##16/10/10更新：
 
-* ����ListView��ʵ�ַ�ʽ��PullToRefreshListView
+* 添加ListView的实现方式：PullToRefreshListView
 
-PullToRefreshRecyclerViewΪRecyclerView��ʵ�ַ�ʽ�������л�ListView�����ChatActivity��PullToRefreshLayout�����޸ĺ�һЩ�����޸ġ�
+PullToRefreshRecyclerView为RecyclerView的实现方式，若想切换ListView则需对ChatActivity和PullToRefreshLayout等做修改和一些属性修改。
 
-ListView������:ChatListViewAdapter
+ListView适配器:ChatListViewAdapter
 
-RecyclerView������:ChatRecyclerAdapter
+RecyclerView适配器:ChatRecyclerAdapter
 
-##16/9/30���£�
+##16/9/30更新：
 
-* ������ListView��ΪRecyclerView
+* 界面由ListView改为RecyclerView
 
-* ��������item����
+* 增加添加item动画
 
-* �޸���������̵������⣬����΢�š�
+* 修复界面随键盘弹起问题，类似微信。
 
-* �Ż����棬�����û�����
+* 优化界面，提升用户体验
 
-##���ܣ�
-* ����Ŀ��һ��������棬��װ�˰������֡����顢ͼƬ��������Ϣ��
-* ֧�־�̬���飬gif���飬���ֱ�����š�ͼ�Ļ���ʵ�ֲο���[Android����ʵ��ͼ�Ļ�ࣨ����gif��ʾ��](http://blog.csdn.net/omrapollo/article/details/50586902)
-* ֧��ͼƬ���ͣ��ü�ͼƬ��״��֧��ͼƬ��������ͼ�ۿ���֧�ַŴ���С�ȡ�
-* ����ͼƬ��С�ȱ������ţ���ѹ����ʾ��
-* ֧���������ͣ���������δ��״̬��ʾ������¼��Ϊamr��ʽ�����ļ����������ͷ�΢�š�
-* �������Ź��߿��Բο���һ����Ŀ��[android�������Ź��ߣ��Դ����棩](http://blog.csdn.net/omrapollo/article/details/78085730)
-* ����¼��mp3��ʽ�ο���[Android¼��mp3��ʽ](http://blog.csdn.net/omrapollo/article/details/50470659)
-* û��¼��Ȩ������ʾ�û���ʵ�ַ�ʽ�ο���[Android¼��Ȩ�ޱ����������](http://blog.csdn.net/omrapollo/article/details/51150280)
-* ������ͼƬ֧������״̬�������С�����ʧ�ܺͷ��ͳɹ�������ʧ����ʾ��̾�ţ���
-* ֧���������ظ��࣬�������ظ�������ViewDragHelper��ʵ�ַ�ʽ�ο���[Android����ˢ��](http://blog.csdn.net/omrapollo/article/details/49867345)
-* ֧��ʱ����ʾ��Ĭ�ϴ���һ������ʾһ�Σ��������μ�ChatAdapter�ࡣ�ɸ��������޸ġ�
+##介绍：
+* 该项目是一个聊天界面，封装了包括文字、表情、图片和语音信息。
+* 支持静态表情，gif表情，文字表情混排。图文混排实现参考：[Android聊天实现图文混编（包括gif显示）](http://blog.csdn.net/omrapollo/article/details/50586902)
+* 支持图片发送，裁剪图片形状，支持图片点击进入大图观看，支持放大缩小等。
+* 根据图片大小等比例缩放，并压缩显示。
+* 支持语音发送，接收语音未读状态显示，语音录制为amr格式保存文件，语音发送仿微信。
+* 语音播放工具可以参考另一个项目：[android语音播放工具（自带缓存）](http://blog.csdn.net/omrapollo/article/details/78085730)
+* 若想录制mp3格式参考：[Android录制mp3格式](http://blog.csdn.net/omrapollo/article/details/50470659)
+* 没有录音权限则提示用户。实现方式参考：[Android录音权限被禁解决方案](http://blog.csdn.net/omrapollo/article/details/51150280)
+* 语音、图片支持三种状态：发送中、发送失败和发送成功（发送失败显示感叹号）。
+* 支持下拉加载更多，下拉加载更多用了ViewDragHelper，实现方式参考：[Android下拉刷新](http://blog.csdn.net/omrapollo/article/details/49867345)
+* 支持时间显示，默认大于一分钟显示一次，具体规则参见ChatAdapter类。可根据需求修改。
 
-##��ϸ˵��
+##详细说明
 
 ListView:
 
@@ -74,30 +77,30 @@ RecyclerView:
 
 ![image](https://github.com/Maxi-Mao/ChatDemo/blob/master/ChatIMG/uml2.png)
 
-###��Ҫ��
-* ChatActivity:�������
-* ChatListViewAdapter:ListView�������������
-* ChatRecyclerAdapter:RecyclerView�������������
-* ChatBean:�������ݶ���
+###主要：
+* ChatActivity:聊天界面
+* ChatListViewAdapter:ListView聊天界面适配器
+* ChatRecyclerAdapter:RecyclerView聊天界面适配器
+* ChatBean:聊天数据对象
 
-###����
-* ImageViewActivity:��ͼ�ۿ�����
-* AudioRecordButton���Զ���¼���ؼ�
-* BubbleImageView���Զ���ͼƬ�ü��ؼ�
-* MediaManager���������ſؼ�
-* GifTextView���Զ���ͼ�Ļ��ſؼ�
-* pulltorefresh�����Զ����������ظ���ؼ�����֧���������ظ��ࣩ
-* SlideInOutBottomItemAnimator:RecyclerView����item�������ϻ���
+###其他
+* ImageViewActivity:大图观看界面
+* AudioRecordButton：自定义录音控件
+* BubbleImageView：自定义图片裁剪控件
+* MediaManager：语音播放控件
+* GifTextView：自定义图文混排控件
+* pulltorefresh包：自定义下拉加载更多控件（仅支持下拉加载更多）
+* SlideInOutBottomItemAnimator:RecyclerView添加item动画（上滑）
 
-ͼƬ����ʹ��Glide��
+图片加载使用Glide。（这个很好 2018.6.15.)
 
-Ϊ���Ż����ܣ������Ĺ�����gifΪ��̬��ʾ��
+为了优化性能，滑动的过程中gif为静态显示。
 
-���ַ��Ͱ�ťΪ�����еĻس���
+文字发送按钮为键盘中的回车。
 
-##��ǣ�
+##后记：
 
-����ĿҲ�ǽ�֮ǰ������һЩ���������һ�£�ʱ��Ƚ϶̣���ҾͿ�һ�¾����ʵ�ַ�ʽ�ɣ������е��ң���ʱ��Ļ�������һ�¡�
+该项目也是将之前做过的一些东西汇合了一下，时间比较短，大家就看一下具体的实现方式吧，可能有点乱，有时间的话我整理一下。
 
 ## License
 
